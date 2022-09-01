@@ -1,0 +1,166 @@
+@model Daurecard.Models.ViewModels.ClientViewModel
+
+@{ ViewData["Title"] = "Create"; }
+
+<link rel="stylesheet" href="~/css/toastr.min.css" />
+
+<style type="text/css">
+    .myloader {
+        animation: spin 1s infinite linear;
+        position: absolute;
+        border: 2px solid rgba(30, 30, 30, 0.5);
+        border-left: 4px solid #fff;
+        border-radius: 50%;
+        height: 100px;
+        margin-bottom: 10px;
+        width: 100px;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+    }
+
+</style>
+
+<!-- Latest compiled JavaScript -->
+<script src="~/js/toastr.min.js"></script>
+
+<script type="text/javascript">function submitStudent() {
+
+        var formData = new FormData($("#clientForm")[0]);
+        var uploadControl = document.getElementById('upldImage');
+
+    $("#divLoader").show();
+    $("#clientForm").hide();
+        $.ajax({
+            url: '/Client/Create',
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formData,
+            beforeSend: function (xhr, opts) {
+
+
+                if (uploadControl.files[0].size > 1024 * 1024) {
+                    $("#divLoader").hide();
+                    $("#clientForm").show();
+                    $("#labelImage").show();
+
+                    return false;
+                }
+                $("#labelImage").hide();
+            },
+            success: function (result) {
+                $("#divLoader").hide();
+                $("#clientForm").show();
+                window.location.href = "/Client/Index?msg=Client ajouté avec succès";
+            },
+            error: function () {
+                $("#divLoader").hide();
+                alert('Failed to receive the Data');
+                console.log('Failed ');
+            }
+        })
+    }</script>
+
+<div id="main" class="container">
+    <div class="pagetitle">
+        <h1>Créer un client </h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Client" asp-action="Index">Client</a></li>
+                <li class="breadcrumb-item active">Ajouter</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <div id="divLoader" class="myloader" style="display:none;">
+        </div>
+        <form id="clientForm" method="post" enctype="multipart/form-data" style="width:80%;">
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group row">
+                <label asp-for="Client.Nom" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="txtNom" asp-for="Client.Nom" class="form-control" />
+                    <span asp-validation-for="Client.Nom" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.Prenom" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="txtPrenom" asp-for="Client.Prenom" class="form-control" />
+                    <span asp-validation-for="Client.Prenom" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.PostNom" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="txtPostnom" asp-for="Client.PostNom" class="form-control" />
+                    <span asp-validation-for="Client.PostNom" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.Tel" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="txtTel" asp-for="Client.Tel" class="form-control" type="tel" />
+                    <span asp-validation-for="Client.Tel" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.Entreprise" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <select id="txtEntreprise" asp-for="Client.EntrepriseId" class="form-control" asp-items="@Model.EntreprisesList">
+                        <option selected class="text-center">--Selectionner une entreprise--</option>
+                    </select>
+                    <span asp-validation-for="Client.EntrepriseId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.ImageFile" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="upldImage" asp-for="Client.ImageFile" class="form-control" accept="image/jpeg" />
+                    <span id="labelImage" asp-validation-for="Client.ImageFile" class="text-danger" style="display:none;">
+                        Cette image est trop large veuillez séléctionner une autre image
+                    </span>
+                </div>
+            </div>
+
+            <h5  style="color: #51678F; margin-top: 10px;">Réseaux sociaux</h5>
+            <hr />
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.Facebook" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="txtFacebook" asp-for="Client.Facebook" class="form-control" />
+                    <span asp-validation-for="Client.Facebook" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.Twitter" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="txtTwitter" asp-for="Client.Twitter" class="form-control" />
+                    <span asp-validation-for="Client.Twitter" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 5px;">
+                <label asp-for="Client.LinkdeIn" class="col-md-2"></label>
+                <div class="col-md-10">
+                    <input id="txtLinkedIn" asp-for="Client.LinkdeIn" class="form-control" />
+                    <span asp-validation-for="Client.LinkdeIn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 5px;">
+                <div class="col-md-10 offset-md-2">
+                    <input id="btnSubmit" onclick="submitStudent()" value="Enregistrer" style="width: 120px;" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

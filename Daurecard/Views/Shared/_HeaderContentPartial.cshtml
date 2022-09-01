@@ -1,0 +1,39 @@
+﻿
+
+<div class="container">
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center">
+                <img src="~/img/logo.png" alt="">
+                <span class="d-none d-lg-block">Daurecard</span>
+            </a>
+            @if (User.IsInRole(Daurecard.Utils.Helper.Admin) || User.IsInRole(Daurecard.Utils.Helper.User))
+            {
+                <i class="bi bi-list toggle-sidebar-btn"></i>
+            }
+
+        </div><!-- End Logo -->
+
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                @if (User.IsInRole(Daurecard.Utils.Helper.Admin))
+                {
+                    <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link nav-icon search-bar-toggle " href="#">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    </li><!-- End Search Icon-->
+
+                    <li class="nav-item dropdown pe-3">
+                        <partial name="_LoginPartial" />
+                    </li>
+                }
+
+            </ul>
+        </nav>
+
+    </header>
+</div>

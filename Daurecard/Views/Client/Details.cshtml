@@ -1,0 +1,84 @@
+@model Daurecard.Models.Client
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Afficher un client</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Client" asp-action="Index">Client</a></li>
+                <li class="breadcrumb-item active">Details</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div>
+        <h4>Client</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProfileImage)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="~/Image/@Model.ProfileImage" width="50" height="50" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Prenom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Prenom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PostNom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PostNom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Tel)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Tel)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Entreprise)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Entreprise.Nom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Facebook)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Facebook)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Twitter)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Twitter)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LinkdeIn)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LinkdeIn)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Modifier</a> |
+        <a class="btn btn-primary" asp-action="CreateQrCode" asp-route-id="@Model.Id">QrCode</a>
+    </div>
+    
+    </main>

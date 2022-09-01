@@ -1,0 +1,26 @@
+﻿@model Daurecard.Models.ViewModels.ClientViewModel
+
+@{
+
+}
+
+
+<main id="main" class="main">
+
+    <div>
+        <h2>Télécharger votre VCard</h2>
+    </div>
+
+    <div>
+        <form asp-action="DownloadVCard">
+            <input type="hidden" asp-for="Client.Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <div class="row" style="margin-top: 5px;">
+                    <input id="btnGenerator" type="submit" value="Télécharger" class="btn btn-primary text-center col-md-4" />
+                </div>
+            </div>
+        </form>
+    </div>
+</main>

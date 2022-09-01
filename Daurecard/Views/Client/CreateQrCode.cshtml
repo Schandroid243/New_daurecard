@@ -1,0 +1,93 @@
+﻿@model Daurecard.Models.ViewModels.ClientViewModel
+
+@{
+    ViewData["Title"] = "CreateQrCode";
+}
+
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Générer le QR Code</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Client" asp-action="Index">Client</a></li>
+                <li class="breadcrumb-item active">Qr Code</li>
+            </ol>
+        </nav>
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-10" style="margin-left:auto;margin-right:auto;">
+            
+            <form asp-action="CreateQrCode">
+                <input type="hidden" asp-for="Client.Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+
+                    <img id="imgQrCode" src="@ViewBag.QrCodeUri" class="img-thumbnail" />
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <div class="row" style="margin-top: 5px;">
+                        <input id="btnGenerator" type="submit" value="Générer" class="btn btn-primary text-center col-md-4" />
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <input id="btnDownolad" value="Télécharger" class="btn btn-success text-center col-md-4" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+@section scripts{
+    <script>
+    var img = document.getElementById("imgQrCode");
+        var button = document.getElementById("btnDownolad");
+        var buttonGenerator = document.getElementById("btnGenerator");
+        var attr = img.getAttribute("src");
+
+    if (attr !== null) {
+        console.log(attr);
+        buttonGenerator.setAttribute('disabled', true);
+        button.removeAttribute('disabled');
+    } else {
+        buttonGenerator.removeAttribute('disabled');
+        button.setAttribute('disabled', true);
+    }
+
+    function saveImage() {
+        if (attr !== null) {
+            const base64string = "";
+            const pageImage = new Image();
+            pageImage.src = attr;
+            pageImage.onload = function () {
+                const canvas = document.createElement('canvas');
+                canvas.width = pageImage.naturalWidth;
+                canvas.height = pageImage.naturalHeight;
+
+                const ctx = canvas.getContext('2d');
+                ctx.imageSmoothingEnabled = false;
+                ctx.drawImage(pageImage, 0, 0);
+                console.log(canvas, pageImage)
+                saveScreenshot(canvas);
+            }
+            function saveScreenshot(canvas) {
+                let fileName = "DaurecardQrCode";
+                const link = document.createElement('a');
+                link.download = fileName + '.png';
+                console.log(canvas)
+                canvas.toBlob(function (blob) {
+                    console.log(blob)
+                    link.href = URL.createObjectURL(blob);
+                    link.click();
+                });
+            };
+        } else {
+            console.log("Img src is null");
+        }
+    }
+
+        button.addEventListener("click", saveImage);
+    </script>
+}

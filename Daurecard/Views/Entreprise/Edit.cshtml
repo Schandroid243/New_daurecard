@@ -1,0 +1,164 @@
+@model Daurecard.Models.Entreprise
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<style type="text/css">
+    .myloader {
+        animation: spin 1s infinite linear;
+        position: absolute;
+        border: 2px solid rgba(30, 30, 30, 0.5);
+        border-left: 4px solid #fff;
+        border-radius: 50%;
+        height: 100px;
+        margin-bottom: 10px;
+        width: 100px;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+    }
+</style>
+
+<script type="text/javascript">
+
+    function submitStudent() {
+        var formData = new FormData($("#entrepriseForm")[0]);
+        var uploadControl = document.getElementById('upldImage');
+        var id = document.getElementById('entrepriseId').value;
+        var url = '/Entreprise/Edit/' + id;
+
+        if (uploadControl.files.length === 0) {
+            $("#divLoader").show();
+            $("#entrepriseForm").hide();
+            $.ajax({
+                url: url,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (result) {
+                    $("#divLoader").hide();
+                    $("#entrepriseForm").show();
+                    window.location.href = "/Entreprise/Index?msg=Entreprise modifié avec succès";
+                },
+                error: function (error) {
+                    $("#divLoader").hide();
+                    console.log('Failed');
+                }
+            });
+        }
+        else {
+            $("#divLoader").show();
+            $("#entrepriseForm").hide();
+            $.ajax({
+                url: url,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: formData,
+                beforeSend: function (xhr, opts) {
+                    if (uploadControl.files[0].size > 1024 * 1024) {
+                        $("#divLoader").hide();
+                        $("#entrepriseForm").show();
+                        $("#labelImage").show();
+                        return false;
+                    }
+                },
+                success: function (result) {
+                    $("#divLoader").hide();
+                    $("#entrepriseForm").show();
+                    window.location.href = "/Entreprise/Index?msg=Entreprise modifié avec succès";
+                },
+                error: function (error) {
+                    $("#divLoader").hide();
+                    console.log('Failed');
+                }
+            });
+        }
+    }
+</script>
+
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Modifier une entreprise</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Entreprise" asp-action="Index">Entreprise</a></li>
+                <li class="breadcrumb-item active">Modifier</li>
+            </ol>
+        </nav>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-9">
+            <div id="divLoader" class="myloader" style="display:none;">
+            </div>
+            <form id="entrepriseForm" method="post" enctype="multipart/form-data" style="width:80%;">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input id="entrepriseId" type="hidden" asp-for="Id" />
+                <label id="ErrorLabel" class="text-danger">@ViewBag.Error</label>
+                <div class="form-group row">
+                    <label asp-for="Nom" class="col-md-2"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Nom" class="form-control" />
+                        <span asp-validation-for="Nom" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 5px;">
+                    <label asp-for="Adresse" class="col-md-2"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Adresse" class="form-control" />
+                        <span asp-validation-for="Adresse" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 5px;">
+                    <label asp-for="SecteurActivite" class="col-md-2"></label>
+                    <div class="col-md-10">
+                        <input asp-for="SecteurActivite" class="form-control" />
+                        <span asp-validation-for="SecteurActivite" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 5px;">
+                    <label asp-for="Tel" class="col-md-2"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Tel" class="form-control" />
+                        <span asp-validation-for="Tel" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 5px;">
+                    <label asp-for="Email" class="col-md-2"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 5px;">
+                    <label asp-for="LogoFile" class="col-md-2"></label>
+                    <div class="col-md-10">
+                        <input id="upldImage" asp-for="LogoFile" class="form-control" accept="image/png" />
+                        <span id="labelImage" asp-validation-for="LogoFile" class="text-danger" style="display:none;">
+                            Ce logo est trop large veuillez séléctionner une autre logo
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 5px;">
+                    <div class="col-md-10 offset-md-2">
+                        <input onclick="submitStudent()" value="Enregistrer" style="width: 100px;" class="btn btn-success" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <img id="imgLogo" src="~/Logo/@Model.Logo" class="img-thumbnail" />
+        </div>
+    </div>
+</main>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

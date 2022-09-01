@@ -1,0 +1,158 @@
+@model PaginatedList<Daurecard.Models.Client>
+
+@{
+    ViewData["Title"] = "Index";
+
+ }
+
+<link rel="stylesheet" href="~/css/toastr.min.css" />
+<link rel="stylesheet" href="~/css/style.css" />
+
+<!-- Latest compiled JavaScript -->
+<script src="~/js/toastr.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var success = @((TempData["AlertMessage"] != null).ToString().ToLower());
+
+        if (success == true) {
+            var message = $('#success-alert').text();
+            if (message !== null) {
+                toastr.success(message);
+            }
+        }
+
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var paramValue = url.searchParams.get("msg");
+        if (paramValue !== null) {
+            toastr.success(paramValue);
+        }
+    });
+
+    $("input:checkbox").attr("checked", false).click(function () {
+        var shcolumn = "." + $(this).attr("name");
+        $(shcolumn).toggle();
+    });
+</script>
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Liste des clients</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Client</li>
+            </ol>
+        </nav>
+    </div>
+
+    <br />
+    <div>
+        <a class="btn btn-primary" asp-action="Create">Ajouter</a>
+    </div>
+
+    <span id="success-alert" class="d-none">
+        @TempData["AlertMessage"]
+    </span>
+
+
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Filtre par nom: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Rechercher" class="btn btn-secondary" /> |
+                <a asp-action="Index" class="btn btn-info">Afficher la list complète</a>
+            </p>
+        </div>
+    </form>
+
+    
+    <div class="table-responsive hide-cols">
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="ProfileImage">
+                        @Html.DisplayNameFor(model => model.Client.ProfileImage)
+                        
+                    </th>
+                    <th class="Nom">
+                        @Html.DisplayNameFor(model => model.Client.Nom)
+                        
+                    </th>
+                    <th class="Prenom">
+                        @Html.DisplayNameFor(model => model.Client.Prenom)
+                        
+                    </th>
+                    <th class="PostNom">
+                        @Html.DisplayNameFor(model => model.Client.PostNom)
+                        
+                    </th>
+                    <th class="Tel">
+                        @Html.DisplayNameFor(model => model.Client.Tel)
+                        
+                    </th>
+                    <th class="Entreprise">
+                        @Html.DisplayNameFor(model => model.Client.Entreprise)
+                        
+                    </th>
+                    <th style="width: 35%">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+    <tr>
+        <td><img src="~/Image/@item.ProfileImage" width="30" height="30" /></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostNom)
+        </td>
+        <td class="tel_col">
+            @Html.DisplayFor(modelItem => item.Tel)
+        </td>
+        <td class="entreprise_col">
+            @Html.DisplayFor(modelItem => item.Entreprise.Nom)
+        </td>
+        <td>
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+    </tr>}
+            </tbody>
+            
+        </table>
+    </div>
+        @{ var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.NextPage ? "disabled" : ""; }
+
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-secondary @prevDisabled">
+            Précédent
+        </a>
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-info @nextDisabled">
+            Suivant
+        </a>
+</main>
+
+
+
+    
+

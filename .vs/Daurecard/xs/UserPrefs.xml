@@ -1,0 +1,43 @@
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{C71CBAAF-3A79-4A23-9A33-754FC14520A1}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Daurecard/Controllers/DownloadVCardController.cs">
+    <Files>
+      <File FileName="Daurecard/Controllers/HomeController.cs" Line="29" Column="37" />
+      <File FileName="Daurecard/Controllers/SubscribeController.cs" Line="1" Column="1" />
+      <File FileName="Daurecard/Controllers/ClientController.cs" Line="17" Column="1" />
+      <File FileName="Daurecard/Controllers/AccountController.cs" Line="1" Column="1" />
+      <File FileName="Daurecard/Controllers/DownloadVCardController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Daurecard" expanded="True">
+            <Node name="Daurecard" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="DownloadVCardController.cs" selected="True" />
+              </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Account" expanded="True" />
+                <Node name="Client" expanded="True" />
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+                <Node name="Subscribe" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Daurecard PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/schandroid/Desktop/Projects/daurecard/Daurecard/Controllers/SubscribeController.cs" relfile="Daurecard/Controllers/SubscribeController.cs" line="46" column="1" />
+      <Breakpoint file="/Users/schandroid/Desktop/Projects/daurecard/Daurecard/Controllers/HomeController.cs" relfile="Daurecard/Controllers/HomeController.cs" line="30" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

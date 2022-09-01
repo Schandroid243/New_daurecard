@@ -1,0 +1,61 @@
+﻿@model Daurecard.Models.DownloadVCard
+@{
+}
+
+
+
+<div class="container" style="margin-top: 50px; justify-content:center; align-items:center; ">
+    <div class="pagetitle">
+        <h1>Télécharger votre VCard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">VCard</li>
+            </ol>
+        </nav>
+    </div>
+
+    <hr />
+
+    <div>
+        <form asp-action="DownloadVCard">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="margin-top: 5px;">
+                <p>Une fois le téléchargement effectué, il vous suffit d'accèder aux téléchargements de cliquer sur la VCard téléchargée</p>
+                <p>Et le navigateur se chargera d'enregistrer les informations contenu dans la VCard dans votre</p>
+                <p>répertoire mobile.</p>
+                <br />
+                <p>Tout est prêt il ne vous reste plus qu'a cliquer sur le bouton Télécharger !</p>
+            </div>
+            <div class="form-group" style="margin-top: 10px;">
+                <div class="row" style="margin-top: 5px;">
+                    <input id="btnGenerator" type="submit" value="Télécharger" class="btn btn-primary text-center col-md-4" style="width: 150px;" />
+                </div>
+            </div>
+
+            <h5 style="color: #51678F; margin-top: 25px;">Réseaux sociaux</h5>
+            <hr />
+            <div class="form-group row" style="margin-top: 10px;">
+                <div class="col-md-1">
+                    <a class="btn text-center" href="@ViewBag.Facebook" style="width: 40px;">
+                        <img src="~/img/facebook-32.png" alt=""/>
+                        
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <a class="btn text-center" href="@ViewBag.Twitter" style="width: 55px;">
+                        <img src="~/img/twitter-32.png" alt=""/>
+                        
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <a class="btn text-center" href="@ViewBag.LinkedIn" style="width: 55px;">
+                        <img src="~/img/linkedin-32.png" alt=""/>
+                        
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

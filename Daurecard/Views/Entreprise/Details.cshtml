@@ -1,0 +1,64 @@
+@model Daurecard.Models.Entreprise
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Afficher une entreprise</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Entreprise" asp-action="Index">Entreprise</a></li>
+                <li class="breadcrumb-item active">Details</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div>
+        <h4>Entreprise</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Logo)
+            </dt> 
+            <dd class="col-sm-10">
+                <img src="~/Logo/@Model.Logo" width="50" height="50" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Adresse)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Adresse)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SecteurActivite)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SecteurActivite)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Tel)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Tel)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Modifier</a>
+    </div>
+    </main>

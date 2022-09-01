@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main id="main" class="main">
+    @if (User.IsInRole(Daurecard.Utils.Helper.Admin))
+    {
+        <div class="pagetitle">
+            <h1>Accueil</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Accueil</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- End Page Title -->
+        <hr />
+        <section class="section dashboard">
+            <div class="row">
+                <h5 style="color: #51678F">Comment ajouter une entreprise ?</h5>
+                
+                <p style="color: #899BBD">Pour enregistrer une entreprise, il suffit de cliquer sur le menu déroulant entreprise, cliquer sur ajouter, saisir les informations de l'entreprise et enfin cliquer sur le bouton enregistrer. Une fois l'enregistrement de l'entreprise effectué, vous serez automatiquement redirigé vers la liste de toutes les entreprises.</p>
+            </div>
+
+            <div class="row">
+                <h5 style="color: #51678F">Comment ajouter un client ?</h5>
+                
+                <p style="color: #899BBD">La plateforme Daurecard est simple et intuitive ainsi pour rajouter un client il faut premièrement s'assurer que l'entreprise où le dit client travail a été enregistré au préalable dans la section entreprise; </p>
+                <p style="color: #899BBD">Ensuite il vous suffit de cliquer sur le menu déroulant client, cliquer sur ajouter, saisir les informations du client, et enfin cliquer sur le bouton enregistrer. Une fois l'enregistrement du client effectué, vous serez automatiquement redirigé vers la liste de tout les clients.</p>
+                <p style="color: #899BBD"></p>
+            </div>
+
+            <div class="row">
+                <h5 style="color: #51678F">Comment générer le QrCode d'un client ?</h5>
+
+                <p><a class="btn btn-primary" asp-controller="Home" asp-action="GeneratePdf">Click</a></p>
+                <p style="color: #899BBD">Pour générer le QrCode d'un client, cliquer sur le menu déroulant client ensuite cliquer sur liste client vous aurez accès à tout les clients. Une fois la liste des clients affichée, rechercher le client dont vous souhaitez générer le QrCode en utilisant le filtre de recherche;</p>
+                <p style="color: #899BBD">Cliquez ensuite sur le bouton détails, vous serez redirigé vers la page détails; Une fois sur la page détail cliquer sur le bouton QrCode vous serez redirigé vers la page Générer QrCode; Cliquez ensuite sur le bouton Générer et le QrCode s'affichera automatiquement à l'écran;</p>
+                <p style="color: #899BBD">Le bouton Télécharger permet quant à lui d'enregistrer le QrCode afin de pouvoir l'imprimer !</p>
+            </div>
+        </section>
+        
+    }
+    else
+    {
+        <p>Veuillez vous connectez !</p>
+    }
+</main>
+ 

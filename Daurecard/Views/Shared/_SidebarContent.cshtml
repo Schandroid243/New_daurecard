@@ -1,0 +1,66 @@
+
+
+
+<div class="container">
+    @if (User.IsInRole(Daurecard.Utils.Helper.Admin))
+    {
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " asp-controller="Home" asp-action="Index">
+                <i class="bi bi-grid"></i>
+                <span>Accueil</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse">
+                <i class="bi bi-people"></i><span>Client</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-controller="Client" asp-action="Create">
+                        <i class="bi bi-circle"></i><span>Ajouter</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Client" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Liste Clients</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse">
+                <i class="bi bi-building"></i><span>Entreprise</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-controller="Entreprise" asp-action="Create">
+                        <i class="bi bi-circle"></i><span>Ajouter</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Entreprise" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Liste Entreprises</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
+
+
+    </ul>
+
+    </aside>
+    }
+    else
+    {
+        <p>Veuillez vous connectez !</p>
+    }
+</div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
