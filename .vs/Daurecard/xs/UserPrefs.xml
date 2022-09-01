@@ -5,7 +5,7 @@
       <File FileName="Daurecard/Controllers/SubscribeController.cs" Line="1" Column="1" />
       <File FileName="Daurecard/Controllers/ClientController.cs" Line="17" Column="1" />
       <File FileName="Daurecard/Controllers/AccountController.cs" Line="1" Column="1" />
-      <File FileName="Daurecard/Controllers/DownloadVCardController.cs" Line="1" Column="1" />
+      <File FileName="Daurecard/Controllers/DownloadVCardController.cs" Line="8" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
