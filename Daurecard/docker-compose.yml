@@ -1,0 +1,30 @@
+version: '3.0'
+
+services:
+   db:
+     image: mysql:5.7
+     container_name: test-mysql
+     volumes:
+       - db_vol:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: DaurecardDb
+       MYSQL_PASSWORD: root
+     ports:
+       - 3307:3306
+     expose:
+      - "3307"
+     cap_add:
+      - SYS_NICE # CAP_SYS_NICE
+     restart: always
+
+   daurecardapp:
+     depends_on:
+       - db
+     image: dotnet-daurecard-heroku:latest
+     build:
+       context: .
+     ports:
+       - "5000:80"
+volumes:
+     db_vol:

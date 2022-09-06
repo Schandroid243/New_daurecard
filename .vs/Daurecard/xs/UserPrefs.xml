@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Daurecard/Controllers/DownloadVCardController.cs">
     <Files>
       <File FileName="Daurecard/Controllers/HomeController.cs" Line="29" Column="37" />
-      <File FileName="Daurecard/Controllers/SubscribeController.cs" Line="1" Column="1" />
-      <File FileName="Daurecard/Controllers/ClientController.cs" Line="17" Column="1" />
-      <File FileName="Daurecard/Controllers/AccountController.cs" Line="1" Column="1" />
+      <File FileName="Daurecard/Controllers/SubscribeController.cs" />
+      <File FileName="Daurecard/Controllers/ClientController.cs" />
+      <File FileName="Daurecard/Controllers/AccountController.cs" />
       <File FileName="Daurecard/Controllers/DownloadVCardController.cs" Line="8" Column="35" />
     </Files>
     <Pads>
@@ -18,8 +18,6 @@
               </Node>
               <Node name="Data" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Account" expanded="True" />
-                <Node name="Client" expanded="True" />
                 <Node name="Home" expanded="True" />
                 <Node name="Shared" expanded="True" />
                 <Node name="Subscribe" expanded="True" />

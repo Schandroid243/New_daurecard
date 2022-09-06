@@ -426,3 +426,4 @@
 /Users/schandroid/Desktop/Projects/daurecard/Daurecard/bin/Debug/net5.0/Daurecard.Views.dll
 /Users/schandroid/Desktop/Projects/daurecard/Daurecard/bin/Debug/net5.0/Daurecard.Views.pdb
 /Users/schandroid/Desktop/Projects/daurecard/Daurecard/obj/Debug/net5.0/Daurecard.genruntimeconfig.cache
+/Users/schandroid/Desktop/Projects/daurecard/Daurecard/obj/Debug/net5.0/Daurecard.csproj.AssemblyReference.cache

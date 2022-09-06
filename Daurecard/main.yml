@@ -1,0 +1,33 @@
+name: schandroid-dotnet-heroku-app CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+#set environment variables 
+env:
+  HEROKU_API_KEY: ${{ 61735590-337d-4114-a177-5c3dacc478ed }}
+  APP_NAME: ${{ 'daurecard' }}
+
+jobs:
+      
+  deploy:
+    name: Deploy to Heroku
+    runs-on: ubuntu-18.04
+    steps:
+
+    # Clone the repository
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Build Docker image
+    - name: Docker build
+      run: docker login --username=ngunzachadrack@aurtech.cd --password=61735590-337d-4114-a177-5c3dacc478ed registry.heroku.com
+
+    # Push the Docker image to Heroku Container Registry
+    - name: Publish
+      run: |
+        heroku container:push web -a daurecard
+        heroku container:release web -a daurecard
